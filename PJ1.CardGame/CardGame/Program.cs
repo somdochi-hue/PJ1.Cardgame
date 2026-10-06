@@ -11,6 +11,11 @@ Console.WriteLine(" \t1열\t2열\t3열\t4열");
 cardboard();
 void cardboard()
 {
-    Console.Write($"{}행\t");
+    for (int i = 0; i < 16; i++)
+    { 
+        if ()
+    }
+    Console.Write($"{}행");
+    Console.Write($"\t{}\t");
 }
     
