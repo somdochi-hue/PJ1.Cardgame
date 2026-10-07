@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Threading;
-using System.Xml.Schema;
 
 int playCount = 0;
 int completCount = 0;
@@ -48,7 +46,7 @@ while (playCount < 20 && completCount < 8)
     if (star[row1, col1])
     {
         Console.WriteLine("이미 오픈된 카드입니다. 다시 선택하세요.");
-        Console.ReadKey();
+        Thread.Sleep(1500);
         continue;
     }
     star[row1, col1] = true;
@@ -64,7 +62,7 @@ while (playCount < 20 && completCount < 8)
     {
         Console.WriteLine("잘못된 선택입니다.");
         star[row1, col1] = false;
-        Console.ReadKey();
+        Thread.Sleep(1500);
         continue;
     }
 
@@ -77,12 +75,12 @@ while (playCount < 20 && completCount < 8)
     {
         Console.WriteLine("짝을 맞추셨습니다!");
         completCount++;
-        Console.ReadKey();
+        Thread.Sleep(1500);
     }
     else
     {
         Console.WriteLine("틀렸습니다! 카드를 다시 덮습니다.");
-        Console.ReadKey();
+        Thread.Sleep(1500);
         star[row1, col1] = false;
         star[row2, col2] = false;
     }
