@@ -13,16 +13,12 @@ while (playCount < 20 && completCount < 8)
     Console.Clear();
     PrintBoard(box, star);
 
-    Console.WriteLine($"시도 횟수: {playCount}/20 | 찾은 쌍: {completCount}/8");
-
-    Console.WriteLine();
-
     Console.Write("첫 번째 카드 행 입력: ");
     int row1 = int.Parse(Console.ReadLine()) - 1;
     Console.Write("첫 번째 카드 열 입력: ");
     int col1 = int.Parse(Console.ReadLine()) - 1;
 
-    Console.WriteLine();
+
 
     star[row1, col1] = true;
 
@@ -39,7 +35,7 @@ while (playCount < 20 && completCount < 8)
         Console.WriteLine("잘못된 선택입니다.");
         star[row1, col1] = false;
         playCount++;
-        Thread.Sleep(1500);
+        Console.ReadKey();
         continue;
     }
 
@@ -53,12 +49,12 @@ while (playCount < 20 && completCount < 8)
         Console.WriteLine("짝을 맞추셨습니다!");
         completCount++;
         playCount++;
-        Thread.Sleep(1500);
+        Console.ReadKey();
     }
     else
     {
         Console.WriteLine("틀렸습니다! 카드를 다시 덮습니다.");
-        Thread.Sleep(1500);
+        Console.ReadKey();
 
         star[row1, col1] = false;
         star[row2, col2] = false;
@@ -122,4 +118,7 @@ void PrintBoard(int[,] box, bool[,] star)
         }
         Console.WriteLine();
     }
+    Console.WriteLine($"시도 횟수: {playCount}/20 | 찾은 쌍: {completCount}/8");
+
+    Console.WriteLine();
 }
