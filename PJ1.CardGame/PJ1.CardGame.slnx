@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="CardGame/CardGame.csproj" />
+  <Project Path="Teaching.Cardgame/Teaching.Cardgame.csproj" Id="75665c5b-6d40-4e52-9a0a-dcb0ee1d85fc" />
 </Solution>

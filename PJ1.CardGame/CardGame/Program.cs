@@ -11,26 +11,7 @@ Shuffle(box);
 while (playCount < 20 && completCount < 8)
 {
     Console.Clear();
-    Console.WriteLine("===카드 짝 맞추기 게임===");
-    Console.WriteLine();
-    Console.WriteLine(" \t1열\t2열\t3열\t4열");
-
-    for (int row = 0; row < 4; row++)
-    {
-        Console.Write($"{row + 1}행\t");
-        for (int col = 0; col < 4; col++)
-        {
-            if (star[row, col])
-            {
-                Console.Write($"[ {box[row, col]}]\t");
-            }
-            else
-            {
-                Console.Write("**\t");
-            }
-        }
-        Console.WriteLine();
-    }
+    PrintBoard(box, star);
 
     Console.WriteLine($"시도 횟수: {playCount}/20 | 찾은 쌍: {completCount}/8");
 
@@ -43,13 +24,8 @@ while (playCount < 20 && completCount < 8)
 
     Console.WriteLine();
 
-    if (star[row1, col1])
-    {
-        Console.WriteLine("이미 오픈된 카드입니다. 다시 선택하세요.");
-        Thread.Sleep(1500);
-        continue;
-    }
     star[row1, col1] = true;
+
     Console.Clear();
     PrintBoard(box, star);
 
@@ -62,12 +38,13 @@ while (playCount < 20 && completCount < 8)
     {
         Console.WriteLine("잘못된 선택입니다.");
         star[row1, col1] = false;
+        playCount++;
         Thread.Sleep(1500);
         continue;
     }
 
     star[row2, col2] = true;
-    playCount++;
+
     Console.Clear();
     PrintBoard(box, star);
 
@@ -75,12 +52,14 @@ while (playCount < 20 && completCount < 8)
     {
         Console.WriteLine("짝을 맞추셨습니다!");
         completCount++;
+        playCount++;
         Thread.Sleep(1500);
     }
     else
     {
         Console.WriteLine("틀렸습니다! 카드를 다시 덮습니다.");
         Thread.Sleep(1500);
+
         star[row1, col1] = false;
         star[row2, col2] = false;
     }
@@ -91,7 +70,7 @@ if (completCount == 8)
 {
     Console.WriteLine("축하합니다! 모든 짝을 맞추셨습니다!");
 }
-else
+if (playCount == 20)
 {
     Console.WriteLine("시도 횟수(20회)를 모두 소모하여 게임 오버되었습니다.");
 }
